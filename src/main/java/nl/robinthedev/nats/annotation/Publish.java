@@ -17,7 +17,8 @@ import java.lang.annotation.Target;
  *
  * <p>If only one subject is present it will use that subject.
  *
- * <p>If no subject is present the {@link nl.robinthedev.nats.annotation.PublishInterceptor} will raise an {@link java.lang.IllegalStateException}
+ * <p>If no subject is present the {@link nl.robinthedev.nats.annotation.PublishInterceptor} will
+ * raise an {@link java.lang.IllegalStateException}
  */
 @InterceptorBinding
 @Retention(RetentionPolicy.RUNTIME)

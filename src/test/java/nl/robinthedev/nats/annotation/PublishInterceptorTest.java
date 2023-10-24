@@ -2,6 +2,7 @@ package nl.robinthedev.nats.annotation;
 
 import static org.assertj.core.api.Assertions.*;
 
+import nl.robinthedev.nats.mapper.NatsMapper;
 import org.assertj.core.api.ThrowableAssert;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -14,7 +15,7 @@ class PublishInterceptorTest {
   @BeforeEach
   void setUp() {
     connection = new TestPublishConnection();
-    interceptor = new PublishInterceptor(connection);
+    interceptor = new PublishInterceptor(connection, NatsMapper.createDefault());
   }
 
   @Test
@@ -34,7 +35,7 @@ class PublishInterceptorTest {
     interceptor.publishInvocation(context);
 
     var publishParameters = connection.getPublishParameters();
-    assertThat(publishParameters.bodyString()).isEqualTo("doPublishData");
+    assertThat(publishParameters.bodyString()).isEqualTo("{\"content\":\"doPublishData\"}");
   }
 
   @Test
@@ -108,8 +109,8 @@ class PublishInterceptorTest {
     }
 
     @Publish(subject = "doPublishSubject")
-    public String doPublish() {
-      return "doPublishData";
+    public MyData doPublish() {
+      return new MyData("doPublishData");
     }
 
     @Publish
@@ -120,6 +121,8 @@ class PublishInterceptorTest {
     @Publish(subject = "voidMethodSubject")
     public void voidMethod() {}
   }
+
+  private record MyData(String content) {}
 
   @Publish(subject = "classSubject")
   private static class ClassWithAnnotation {

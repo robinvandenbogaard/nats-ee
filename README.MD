@@ -51,4 +51,30 @@ Two rules when a method has been annotated with `@Publish`:
 - The method must have a return type. We'll try to serialize it even it's not of type `Serializable`, it can't be void.
 
 We will greet you with a `IllegalStateException` at runtime if these rules get broken.
- 
+
+## Serialization
+
+We offer a simple default json serializer, but leave it up to you to expose it as a bean to be used. We suggest
+you do create your own de-/se-rializer.
+
+This is the only abstraction we have. It is using an optional dependency
+on `com.fasterxml.jackson.core:jackson-databind`. So make sure to add it to your classpath if you do not provide your
+own Serializer, we recommend you do.
+
+To add your own serializer create a bean that implements `NatsMapper` or expose ours using `NatsMapper.createDefault()`.
+I.E.:
+
+```java
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.enterprise.inject.Produces;
+import nl.robinthedev.nats.mapper.NatsMapper;
+
+@ApplicationScoped
+class Config {
+  
+  @Produces
+  NatsMapper createMapper() {
+    return NatsMapper.createDefault();
+  }
+}
+```

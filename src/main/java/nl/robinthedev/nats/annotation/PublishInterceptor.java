@@ -7,19 +7,22 @@ import jakarta.interceptor.AroundInvoke;
 import jakarta.interceptor.Interceptor;
 import jakarta.interceptor.InvocationContext;
 import java.lang.reflect.Method;
-import java.nio.charset.StandardCharsets;
 import java.util.Optional;
+import nl.robinthedev.nats.mapper.NatsMapper;
 
 @Publish
 @Priority(10)
 @Interceptor
 class PublishInterceptor {
 
-  Connection connection;
+  private final Connection connection;
+
+  private final NatsMapper mapper;
 
   @Inject
-  PublishInterceptor(Connection connection) {
+  PublishInterceptor(Connection connection, NatsMapper mapper) {
     this.connection = connection;
+    this.mapper = mapper;
   }
 
   @AroundInvoke
@@ -61,7 +64,7 @@ class PublishInterceptor {
   }
 
   private void publish(Object body, String subject) {
-    connection.publish(subject, body.toString().getBytes(StandardCharsets.UTF_8));
+    connection.publish(subject, mapper.serialize(body));
   }
 
   private Optional<String> conjureSubject(InvocationContext context) {

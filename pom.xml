@@ -15,6 +15,7 @@
 
         <jnats.version>2.17.1</jnats.version>
         <jakarta.enterprise.cdi-api.version>4.0.1</jakarta.enterprise.cdi-api.version>
+        <jackson-databind.version>2.15.3</jackson-databind.version>
 
         <assertj-core.version>3.24.2</assertj-core.version>
         <junit-jupiter.version>5.10.0</junit-jupiter.version>
@@ -37,6 +38,13 @@
             <artifactId>jakarta.enterprise.cdi-api</artifactId>
             <version>${jakarta.enterprise.cdi-api.version}</version>
         </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>${jackson-databind.version}</version>
+            <optional>true</optional>
+        </dependency>
+
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
@@ -106,7 +114,7 @@
                     <artifactId>versions-maven-plugin</artifactId>
                     <version>${versions-maven-plugin.version}</version>
                     <configuration>
-                        <ignoredVersions>.*MR,.*RC,.*[Aa]lpha.*</ignoredVersions>
+                        <ignoredVersions>.*MR,.*-[Rr][Cc][0-9]*,.*[Aa]lpha.*</ignoredVersions>
                     </configuration>
                 </plugin>
             </plugins>
