@@ -16,6 +16,7 @@
         <jnats.version>2.17.1</jnats.version>
         <jakarta.enterprise.cdi-api.version>4.0.1</jakarta.enterprise.cdi-api.version>
         <jackson-databind.version>2.15.3</jackson-databind.version>
+        <slf4j-api.version>2.0.9</slf4j-api.version>
 
         <assertj-core.version>3.24.2</assertj-core.version>
         <junit-jupiter.version>5.10.0</junit-jupiter.version>
@@ -24,7 +25,7 @@
         <versions-maven-plugin.version>2.16.1</versions-maven-plugin.version>
         <jandex-maven-plugin.version>3.1.5</jandex-maven-plugin.version>
         <maven-source-plugin.version>3.3.0</maven-source-plugin.version>
-        <slf4j-api.version>2.0.9</slf4j-api.version>
+        <maven-surefire-plugin.version>3.2.1</maven-surefire-plugin.version>
     </properties>
 
     <dependencies>
@@ -67,6 +68,11 @@
     <build>
         <pluginManagement>
             <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <version>${maven-surefire-plugin.version}</version>
+                </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-source-plugin</artifactId>
