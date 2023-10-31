@@ -52,7 +52,42 @@ Two rules when a method has been annotated with `@Publish`:
 
 We will greet you with a `IllegalStateException` at runtime if these rules get broken.
 
-## Serialization
+## Subscribe to messages
+
+To subscribe to specific messages you can create a bean that is annotated with `@Subscriptions`. On this method you can
+define methods that are annotated with the `@Subscribe` method. Each one of these mtehods will then subscribe to the
+subject provided. The methods parameter will be the payload of expected messages on that subject (see chapter
+Serialization using NatsMapper for more info). I.E.
+
+```java
+import jakarta.enterprise.context.ApplicationScoped;
+import nl.robinthedev.nats.subscription.Subscribe;
+import nl.robinthedev.nats.subscription.Subscriptions;
+
+@ApplicationScoped
+@Subscriptions(
+        subject = "myrootsubject") // Mandatory annotation, subjects will be joined with a '.'
+public class MySubscriptions {
+
+  @Subscribe(subject = "mysubject")
+  public void receiveMessage(String payload) {
+    // Do stuff
+  }
+}
+
+```
+
+When a message is published to the subject `myrootsubject.mysubject`, the method `receiveMessage(String)` will be invoked with the
+data from that message. Only beans with the annotation `@Subscriptions` will be processed and add a subscription on each `@Subscribe` annotated method. 
+
+A few configuration rules are checked:
+* At least one subject must be defined, either on the class or the method.
+* The class and the method must have visibility `public` or else the interceptor cannot invoke it.
+* If the class is annotated with `@Subscriptions`, at least one `@Subscribe` method must be present.
+
+We will greet you with a IllegalStateException at runtime if these rules get broken. Usually at startup, but actually whenever the bean gets created and violations are found.
+
+## Serialization using NatsMapper
 
 We offer a simple default json serializer, but leave it up to you to expose it as a bean to be used. We suggest
 you do create your own de-/se-rializer.
