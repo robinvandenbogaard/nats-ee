@@ -4,6 +4,8 @@ target/
 !**/src/main/**/target/
 !**/src/test/**/target/
 pom.xml.versionsBackup
+pom.xml.releaseBackup
+release.properties
 
 ### IntelliJ IDEA ###
 .idea/
@@ -35,7 +37,3 @@ build/
 
 ### Mac OS ###
 .DS_Store
-
-### JReleaser ###
-out/
-trace.log

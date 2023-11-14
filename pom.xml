@@ -29,7 +29,6 @@
         <jandex-maven-plugin.version>3.1.5</jandex-maven-plugin.version>
         <maven-source-plugin.version>3.3.0</maven-source-plugin.version>
         <maven-surefire-plugin.version>3.2.2</maven-surefire-plugin.version>
-        <jreleaser-maven-plugin.version>1.9.0</jreleaser-maven-plugin.version>
     </properties>
 
     <scm>
@@ -133,25 +132,12 @@
                         <ignoredVersions>.*MR,.*-[Rr][Cc][0-9]*,.*[Aa]lpha.*</ignoredVersions>
                     </configuration>
                 </plugin>
-                <plugin>
-                    <groupId>org.jreleaser</groupId>
-                    <artifactId>jreleaser-maven-plugin</artifactId>
-                    <version>${jreleaser-maven-plugin.version}</version>
-                    <inherited>false</inherited>
-                    <configuration>
-                        <configFile>jreleaser.yml</configFile>
-                    </configuration>
-                </plugin>
             </plugins>
         </pluginManagement>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-source-plugin</artifactId>
-            </plugin>
-            <plugin>
-                <groupId>org.jreleaser</groupId>
-                <artifactId>jreleaser-maven-plugin</artifactId>
             </plugin>
             <plugin>
                 <groupId>io.smallrye</groupId>
