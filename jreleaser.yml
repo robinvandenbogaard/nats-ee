@@ -1,0 +1,21 @@
+# Generated with JReleaser 1.9.0 at 2023-11-10T23:40:38.5480896+01:00
+project:
+  name: nats-ee
+  version: 1.0.0-SNAPSHOT
+  description: Nats EE made easy
+  copyright: Copyright (c) 2023 Robin van den Bogaard
+  longDescription: Easily use nats in using annotations in a java EE application
+  authors:
+    - Robin van den Bogaard
+  license: MIT
+  links:
+    homepage: https://github.com/robinvandenbogaard/nats-ee
+  java:
+    groupId: nl.robinthedev
+    version: 17
+  inceptionYear: 2023
+
+release:
+  github:
+    owner: robinvandenbogaard
+

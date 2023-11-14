@@ -8,7 +8,11 @@
     <artifactId>nats-ee</artifactId>
     <version>1.0-SNAPSHOT</version>
 
+    <name>Nats Enterprise Edition</name>
+    <description>Nats EE made easy</description>
+
     <properties>
+
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -27,6 +31,12 @@
         <maven-source-plugin.version>3.3.0</maven-source-plugin.version>
         <maven-surefire-plugin.version>3.2.1</maven-surefire-plugin.version>
     </properties>
+
+    <scm>
+        <connection>scm:git:https://github.com/robinvandenbogaard/nats-ee.git</connection>
+        <developerConnection>scm:git:https://github.com/robinvandenbogaard/nats-ee.git</developerConnection>
+        <url>https://github.com/robinvandenbogaard/nats-ee.git</url>
+    </scm>
 
     <dependencies>
         <dependency>
@@ -123,12 +133,25 @@
                         <ignoredVersions>.*MR,.*-[Rr][Cc][0-9]*,.*[Aa]lpha.*</ignoredVersions>
                     </configuration>
                 </plugin>
+                <plugin>
+                    <groupId>org.jreleaser</groupId>
+                    <artifactId>jreleaser-maven-plugin</artifactId>
+                    <version>1.9.0</version>
+                    <inherited>false</inherited>
+                </plugin>
             </plugins>
         </pluginManagement>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-source-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.jreleaser</groupId>
+                <artifactId>jreleaser-maven-plugin</artifactId>
+                <configuration>
+                    <configFile>jreleaser.yml</configFile>
+                </configuration>
             </plugin>
             <plugin>
                 <groupId>io.smallrye</groupId>
