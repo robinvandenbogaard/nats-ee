@@ -6,7 +6,7 @@
 
     <groupId>nl.robinthedev</groupId>
     <artifactId>nats-ee</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0.0-SNAPSHOT</version>
 
     <name>Nats Enterprise Edition</name>
     <description>Nats EE made easy</description>
