@@ -9,6 +9,7 @@ class PayloadMethod {
 
   public PayloadMethod(Method method) {
     this.method = method;
+    this.method.setAccessible(true);
   }
 
   public void invoke(Object instance, Object payload)

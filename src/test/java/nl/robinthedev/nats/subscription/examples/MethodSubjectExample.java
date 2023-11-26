@@ -9,5 +9,5 @@ import nl.robinthedev.nats.subscription.Subscriptions;
 @Subscriptions
 public class MethodSubjectExample {
   @Subscribe(subject = "only.method.subject")
-  public void myMethod(String payload) {}
+  void myMethod(String payload) {}
 }
