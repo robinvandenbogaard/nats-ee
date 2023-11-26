@@ -19,7 +19,7 @@
         <jnats.version>2.17.1</jnats.version>
         <jakarta.enterprise.cdi-api.version>4.0.1</jakarta.enterprise.cdi-api.version>
         <jackson-databind.version>2.15.3</jackson-databind.version>
-        <slf4j-api.version>2.0.9</slf4j-api.version>
+        <slf4j.version>2.0.9</slf4j.version>
 
         <assertj-core.version>3.24.2</assertj-core.version>
         <junit-jupiter.version>5.10.1</junit-jupiter.version>
@@ -58,7 +58,7 @@
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
-            <version>${slf4j-api.version}</version>
+            <version>${slf4j.version}</version>
         </dependency>
         <dependency>
             <groupId>org.assertj</groupId>
@@ -70,6 +70,12 @@
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>
             <version>${junit-jupiter.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-nop</artifactId>
+            <version>${slf4j.version}</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
