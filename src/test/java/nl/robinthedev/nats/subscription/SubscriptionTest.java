@@ -5,12 +5,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.api.ThrowableAssert.*;
 
 import java.util.List;
-import nl.robinthedev.nats.subscription.examples.CombinedSubjectExample;
-import nl.robinthedev.nats.subscription.examples.GlobalSubjectExample;
-import nl.robinthedev.nats.subscription.examples.MethodSubjectExample;
-import nl.robinthedev.nats.subscription.examples.MissingPayloadExample;
-import nl.robinthedev.nats.subscription.examples.MissingSubjectExample;
-import nl.robinthedev.nats.subscription.examples.MissingSubscribeAnnotationExample;
+import nl.robinthedev.nats.subscription.examples.TestInvocationContextFactory;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -19,7 +14,7 @@ class SubscriptionTest {
   @Test
   @DisplayName("Only uses subject from method if class has none")
   void methodSubjectOnly() {
-    var context = new TestConstructInvocationContext(MethodSubjectExample.class);
+    var context = TestInvocationContextFactory.forMethodSubjectExample();
 
     var subscriptions = Subscription.fromContext(context);
 
@@ -34,7 +29,7 @@ class SubscriptionTest {
   @Test
   @DisplayName("Only uses subject from class if method has none")
   void globalSubjectOnly() {
-    var context = new TestConstructInvocationContext(GlobalSubjectExample.class);
+    var context = TestInvocationContextFactory.forGlobalSubjectExample();
 
     var subscriptions = Subscription.fromContext(context);
 
@@ -45,7 +40,7 @@ class SubscriptionTest {
   @Test
   @DisplayName("Uses subject from class and method if both are present")
   void combinedSubject() {
-    var context = new TestConstructInvocationContext(CombinedSubjectExample.class);
+    var context = TestInvocationContextFactory.forCombinedSubjectExample();
 
     var subscriptions = Subscription.fromContext(context);
 
@@ -56,7 +51,7 @@ class SubscriptionTest {
   @Test
   @DisplayName("Must have at least one @Subscribe annotated method")
   void missingMethodAnnotation() {
-    var context = new TestConstructInvocationContext(MissingSubscribeAnnotationExample.class);
+    var context = TestInvocationContextFactory.forMissingSubscribeAnnotationExample();
 
     ThrowingCallable onClassCreation = () -> Subscription.fromContext(context);
 
@@ -72,7 +67,7 @@ class SubscriptionTest {
   @Test
   @DisplayName("Must have one parameter on the annotated method")
   void missingPayload() {
-    var context = new TestConstructInvocationContext(MissingPayloadExample.class);
+    var context = TestInvocationContextFactory.forMissingPayloadExample();
 
     ThrowingCallable onClassCreation = () -> Subscription.fromContext(context);
 
@@ -88,7 +83,7 @@ class SubscriptionTest {
   @Test
   @DisplayName("Must have all none empty subjects")
   void missingSubject() {
-    var context = new TestConstructInvocationContext(MissingSubjectExample.class);
+    var context = TestInvocationContextFactory.forMissingSubjectExample();
 
     ThrowingCallable onClassCreation = () -> Subscription.fromContext(context);
 

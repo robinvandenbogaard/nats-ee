@@ -8,8 +8,8 @@ import nl.robinthedev.nats.subscription.Subscriptions;
  * The method must have 1 parameter.
  */
 @Subscriptions
-public class MissingPayloadExample {
+class MissingPayloadExample {
 
   @Subscribe(subject = "example")
-  public void myMethod() {}
+  void myMethod() {}
 }

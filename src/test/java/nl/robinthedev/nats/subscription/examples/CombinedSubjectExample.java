@@ -3,9 +3,12 @@ package nl.robinthedev.nats.subscription.examples;
 import nl.robinthedev.nats.subscription.Subscribe;
 import nl.robinthedev.nats.subscription.Subscriptions;
 
-/** This will raise an error on startup because no methods have a @Subscribe annotation. */
+/**
+ * If the both the class and method annotations have a subject declared, the subject will be
+ * combined.
+ */
 @Subscriptions(subject = "my.comb")
-public class CombinedSubjectExample {
+class CombinedSubjectExample {
   @Subscribe(subject = "ined.subject")
   void myMethod(String payload) {}
 

@@ -5,7 +5,7 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
 import java.util.Map;
 
-class TestConstructInvocationContext implements InvocationContext {
+public class TestConstructInvocationContext implements InvocationContext {
   private final Class<?> clazz;
   private boolean proceedInvoked;
 

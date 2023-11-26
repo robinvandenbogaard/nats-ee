@@ -23,9 +23,7 @@ class SubscriptionRegistryImpl implements SubscriptionRegistry {
 
   @Override
   public void registerSubscriptions(Object instance, SubscriptionsHolder subscriptionsHolder) {
-    subscriptionsHolder
-        .getSubscriptions()
-        .forEach(subscription -> subscribe(instance, subscription));
+    subscriptionsHolder.subscriptions().forEach(subscription -> subscribe(instance, subscription));
   }
 
   private void subscribe(Object instance, Subscription subscription) {

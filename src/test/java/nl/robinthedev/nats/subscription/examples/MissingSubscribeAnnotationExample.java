@@ -7,6 +7,6 @@ import nl.robinthedev.nats.subscription.Subscriptions;
  * nl.robinthedev.nats.subscription.Subscribe} annotation.
  */
 @Subscriptions
-public class MissingSubscribeAnnotationExample {
-  public void myMethod() {}
+class MissingSubscribeAnnotationExample {
+  void myMethod() {}
 }

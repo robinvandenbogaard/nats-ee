@@ -8,8 +8,8 @@ import nl.robinthedev.nats.subscription.Subscriptions;
  * their annotations.
  */
 @Subscriptions
-public class MissingSubjectExample {
+class MissingSubjectExample {
 
   @Subscribe
-  public void myMethod(String payload) {}
+  void myMethod(String payload) {}
 }

@@ -7,7 +7,8 @@ import java.io.IOException;
 
 class DefaultJacksonNatsMapper implements NatsMapper {
 
-  ObjectMapper mapper = new ObjectMapper().configure(JsonGenerator.Feature.IGNORE_UNKNOWN, true);
+  final ObjectMapper mapper =
+      new ObjectMapper().configure(JsonGenerator.Feature.IGNORE_UNKNOWN, true);
 
   @Override
   public byte[] serialize(Object body) {
